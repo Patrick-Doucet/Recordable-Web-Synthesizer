@@ -3,6 +3,9 @@
 <head>
     <title>Online Web Synthesizer</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./scripts/audioStuff.js"></script>
     <script type="text/javascript">
@@ -10,12 +13,63 @@
             setup(); // in "./scripts/audioStuff.js"
         });
     </script>
+    <!--No style is final, just testing-->
     <style>
+        #Title{
+            background-color: rgb(182, 245, 196);
+            height: 100%;
+        }
+
+        #recordButton{
+            height:40px;
+            width:40px;
+        }
+        .whiteKey{
+            background-color: white;
+            color: black;
+        }
+
+        .blackKey{
+            background-color: black;
+            color: white;
+        }
+
+        .pianoComponent{
+            
+        }
 
     </style>
 </head>
 
 <body>
+<div class="TitleContainer">
+    <div id="Title">
+        <h1 style="text-align:center">Online Web Synthesizer</h1>
+    </div>
+</div>
+<button id="recordButton"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
+
+<div class="PianoComponent">
+    <div id="a" class="whiteKey">A</div>
+    <div id="w" class="blackKey">W</div>
+    <div id="s" class="whiteKey">S</div>
+    <div id="e" class="blackKey">E</div>
+    <div id="d" class="whiteKey">D</div>
+    <div id="f" class="whiteKey">F</div>
+    <div id="t" class="blackKey">T</div>
+    <div id="g" class="whiteKey">G</div>
+    <div id="y" class="blackKey">Y</div>
+    <div id="h" class="whiteKey">H</div>
+    <div id="u" class="blackKey">U</div>
+    <div id="j" class="whiteKey">J</div>
+    <div id="k" class="whiteKey">K</div>
+    <div id="o" class="blackKey">O</div>
+    <div id="l" class="whiteKey">L</div>
+    <div id="p" class="blackKey">P</div>
+    <div id="semiColon" class="whiteKey">;</div>
+    <div id="apostrophe" class="whiteKey">'</div>
+</div>
+
 <div id="piano">
     <button id="but_bass">Bass</button>
 </div>
@@ -28,6 +82,18 @@
         <option value="triangle">Triangle</option>
         <option value="custom">Custom</option>
     </select>
+</div>
+
+<div id="Information">
+    <div id="HowToUse">
+        <h2>How to use:</h2>
+            <h3>There are two possible ways to play the Online Web Synthesizer:</h3>
+                <ul>
+                    <li>You can click the notes directly with your mouse or touch screen device.</li>
+                </br>
+                    <li>If you have access to a keyboard, you can use the keys on your keyboard associated to the piano, these are shown on the visual component.</li>
+                </ul>
+    </div>
 </div>
 
 </body>
