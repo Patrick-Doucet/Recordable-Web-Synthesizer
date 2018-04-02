@@ -3,8 +3,13 @@
 <head>
     <title>Online Web Synthesizer</title>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./scripts/audioStuff.js"></script>
-    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            setup(); // in "./scripts/audioStuff.js"
+        });
+    </script>
     <style>
 
     </style>
@@ -12,10 +17,18 @@
 
 <body>
 <div id="piano">
-    <!-- (0.5, 50, 'sine', 0) are test params for bassy sound -->
-    <button onclick="playSound(0.5, 50, 'sine', 0)">Bass</button>
+    <button id="but_bass">Bass</button>
+</div>
+<div class="user_parameters">
+    <span>Current waveform: </span>
+    <select id="waveSlider" name="waveSlider">
+        <option value="sine">Sine</option>
+        <option value="square" selected>Square</option>
+        <option value="sawtooth">Sawtooth</option>
+        <option value="triangle">Triangle</option>
+        <option value="custom">Custom</option>
+    </select>
 </div>
 
 </body>
-
 </html>
