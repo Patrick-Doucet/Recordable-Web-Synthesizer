@@ -4,9 +4,9 @@
     <title>Online Web Synthesizer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./scripts/audioStuff.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -23,51 +23,107 @@
         #recordButton{
             height:40px;
             width:40px;
+            float:right;
+            margin-top: 2%;
+            margin-left: 25%;
+            margin-right: 25%;
         }
         .whiteKey{
+            display:inline-block;
+            vertical-align: top;
+            border-style: solid;
+            border-width: 0.01em;
             background-color: white;
             color: black;
+            left: 0px;
+            top: 0px;
+            width: 50px;
+            height: 300px;
+            z-index: 1;
         }
 
         .blackKey{
+            display:inline-block;
+            vertical-align: top;
+            border-style: solid;
+            border-width: 0.01em;
             background-color: black;
             color: white;
+            left: 75px;
+            top: 100px;
+            width: 50px;
+            height: 200px;
+            z-index: 2;
         }
 
-        .pianoComponent{
-            
+        .PianoComponent{
+            margin-left: 25%;
+            margin-right: 25%;
+            margin-bottom: 2%;
+            display:inline-block;
+            border-style:double;
+            display: flex;
+        }
+
+        .octaveButtons{
+            display:flex;
+            float:right;
         }
 
     </style>
 </head>
 
 <body>
-<div class="TitleContainer">
-    <div id="Title">
-        <h1 style="text-align:center">Online Web Synthesizer</h1>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="TitleContainer">
+            <div id="Title">
+                <h1 style="text-align:center">Online Web Synthesizer</h1>
+            </div>
+        </div>
     </div>
 </div>
-<button id="recordButton"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
 
-<div class="PianoComponent">
-    <div id="a" class="whiteKey">A</div>
-    <div id="w" class="blackKey">W</div>
-    <div id="s" class="whiteKey">S</div>
-    <div id="e" class="blackKey">E</div>
-    <div id="d" class="whiteKey">D</div>
-    <div id="f" class="whiteKey">F</div>
-    <div id="t" class="blackKey">T</div>
-    <div id="g" class="whiteKey">G</div>
-    <div id="y" class="blackKey">Y</div>
-    <div id="h" class="whiteKey">H</div>
-    <div id="u" class="blackKey">U</div>
-    <div id="j" class="whiteKey">J</div>
-    <div id="k" class="whiteKey">K</div>
-    <div id="o" class="blackKey">O</div>
-    <div id="l" class="whiteKey">L</div>
-    <div id="p" class="blackKey">P</div>
-    <div id="semiColon" class="whiteKey">;</div>
-    <div id="apostrophe" class="whiteKey">'</div>
+<div class="row">
+    <div class="col-sm-12"> 
+        <div class="recordButtonContainer">
+                <button id="recordButton"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 mx-sm-2">
+        <div class="PianoComponent">
+            <div id="a" class="whiteKey">A</div>
+            <div id="w" class="blackKey">W</div>
+            <div id="s" class="whiteKey">S</div>
+            <div id="e" class="blackKey">E</div>
+            <div id="d" class="whiteKey">D</div>
+            <div id="f" class="whiteKey">F</div>
+            <div id="t" class="blackKey">T</div>
+            <div id="g" class="whiteKey">G</div>
+            <div id="y" class="blackKey">Y</div>
+            <div id="h" class="whiteKey">H</div>
+            <div id="u" class="blackKey">U</div>
+            <div id="j" class="whiteKey">J</div>
+            <div id="k" class="whiteKey">K</div>
+            <div id="o" class="blackKey">O</div>
+            <div id="l" class="whiteKey">L</div>
+            <div id="p" class="blackKey">P</div>
+            <div id="semiColon" class="whiteKey">;</div>
+            <div id="apostrophe" class="whiteKey">'</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="octaveButtons">
+            <button id="octaveDown" style="width:30px;height:20px;">-</button>
+            <button id="octaveUp" style="width:30px;height:20px;">+</button>
+        </div>
+    </div>
 </div>
 
 <div id="piano">
@@ -84,17 +140,21 @@
     </select>
 </div>
 
-<div id="Information">
-    <div id="HowToUse">
-        <h2>How to use:</h2>
-            <h3>There are two possible ways to play the Online Web Synthesizer:</h3>
-                <ul>
-                    <li>You can click the notes directly with your mouse or touch screen device.</li>
-                </br>
-                    <li>If you have access to a keyboard, you can use the keys on your keyboard associated to the piano, these are shown on the visual component.</li>
-                </ul>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="Information">
+            <div id="HowToUse">
+                <h2>How to use:</h2>
+                    <h3>There are two possible ways to play the Online Web Synthesizer:</h3>
+                        <ul>
+                            <li>You can click the notes directly with your mouse or touch screen device.</li>
+                        </br>
+                            <li>If you have access to a keyboard, you can use the keys on your keyboard associated to the piano, these are shown on the visual component.</li>
+                        </ul>
+                    <h3>Click the - or + buttons to change octaves or use the z/x keys</h3>
+            </div>
+        </div>
     </div>
 </div>
-
 </body>
 </html>
