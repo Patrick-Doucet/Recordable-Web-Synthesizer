@@ -1,6 +1,6 @@
-var audioCtx = new (AudioContext || webkitAudioContext)(); // audiocontext object for different browsers
+let audioCtx = new (AudioContext || webkitAudioContext)(); // audiocontext object for different browsers
 let masterGainNode = null;
-var thing = []; // TODO: placeholder
+let oscillatorList = [];
 let noteFreq = null;
 
 
@@ -119,15 +119,16 @@ function setup(){
     
     noteFreq = createNoteTable();
 
-
+    // Initialise an oscillator for each piano key
+    var numOfKeys = $('div', $('.PianoComponent')).length;
+    for (i=0; i<numOfKeys; i++) {
+        oscillatorList[i] = [];
+    }
 
     // Give the piano keys some functionnality
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
-        $(this).on("mousedown", notePressed);
-        $(this).on("mouseup", noteReleased);
-        // Next 2 are needed, otherwise the sound playback continues if users mouse leaves button before unclicking
-        $(this).on("mouseover", notePressed);
-        $(this).on("mouseleave", noteReleased);
+        $(this).on("mousedown mouseover", notePressed);
+        $(this).on("mouseup mouseleave", noteReleased);
     });
 };
 
@@ -165,12 +166,14 @@ function notePressed(e){
         var tone = e.target.attributes.value.value;
         var octave = 3;
         if(tone < 12){
+            // 12 notes from the current octave
             var freq = noteFreq[octave][tone];
         }else{
+            // 6 ish from the next octave
             var freq = noteFreq[octave+1][tone%12];
         }
         if(!dataset["pressed"]){
-            thing[0] = playTone(freq); // TODO
+            oscillatorList[tone] = playTone(freq); // TODO
             dataset["pressed"] = "yes";
         }
     }
@@ -178,8 +181,9 @@ function notePressed(e){
 function noteReleased(e){
     let dataset = e.target.dataset;
     if (dataset && dataset["pressed"] == "yes") {
-        thing[0].stop(); // TODO
-        thing[0] = null; // TODO
+        var tone = e.target.attributes.value.value;
+        oscillatorList[tone].stop(); // TODO
+        oscillatorList[tone] = null; // TODO
         delete dataset["pressed"];
     }
 };
