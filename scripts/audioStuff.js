@@ -36,8 +36,7 @@ function playTone(freq){
     let osc = audioCtx.createOscillator();
     osc.connect(masterGainNode);
 
-    let type = $('#waveSlider option:selected').text();
-
+    var type = $('#waveSlider option:selected').val();
     if(type == "custom"){
         // osc.setPeriodicWave(customWaveForm) // TODO
     }else{
