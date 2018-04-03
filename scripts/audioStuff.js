@@ -10,13 +10,14 @@ function setup(){
     masterGainNode.connect(audioCtx.destination);
     masterGainNode.gain.value = volumeValue;
 
-    // (below) Do this for each key on the piano, freq and other params will be passed through the event.dataset parameter to audio nodes
-    $("#but_bass").on("mousedown", notePressed);
-    $("#but_bass").on("mouseup", noteReleased);
-    // Next 2 are needed, otherwise the sound playback continues if users mouse leaves button before unclicking
-    $("#but_bass").on("mouseover", notePressed);
-    $("#but_bass").on("mouseleave", noteReleased);
-    // Create the keys?
+    // Give the piano keys some functionnality
+    $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
+        $(this).on("mousedown", notePressed);
+        $(this).on("mouseup", noteReleased);
+        // Next 2 are needed, otherwise the sound playback continues if users mouse leaves button before unclicking
+        $(this).on("mouseover", notePressed);
+        $(this).on("mouseleave", noteReleased);
+    });
 };
 
 function record(){
@@ -51,7 +52,7 @@ function playTone(freq){
 function notePressed(e){
     if(e.buttons & 1) {
         let dataset = e.target.dataset;
-        var freq = 200; // TODO, get freq from saved table with freqs for each note
+        var freq = 10+10*e.target.attributes.value.value; // TODO, get freq from saved table with freqs for each note
         if(!dataset["pressed"]){
             thing[0] = playTone(freq); // TODO
             dataset["pressed"] = "yes";
