@@ -1,0 +1,144 @@
+/*If you don't want the text of something to be selectable, use this class*/
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+#Title{
+    text-shadow: 3px 1px black;
+    color:white;
+    background-color: rgb(63, 157, 185);
+    height: 100%;
+}
+
+#recordButton{
+    height:40px;
+    width:40px;
+    float:right;
+    margin-top: 2%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.whiteKey{
+    position: relative;
+    display:inline-block;
+    vertical-align: top;
+    border-style: solid;
+    border-width: 0.01em;
+    background-color: white;
+    color: black;
+    left: 0px;
+    top: 0px;
+    width: 55px;
+    height: 300px;
+    z-index: 1;
+}
+
+.blackKey{
+    position: relative;
+    display:inline-block;
+    vertical-align: top;
+    border-style: solid;
+    border-width: 0.01em;
+    background-color: black;
+    color: white;
+    /*left: 75px;
+    top: 100px;*/
+    width: 55px;
+    height: 200px;
+    z-index: 2;
+}
+
+.PianoComponent{
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 2%;
+    display:inline-block;
+    border-style:double;
+    display: flex;
+}
+
+.octaveButtons{
+    display:flex;
+    float:right;
+}
+
+.whiteKey span{
+    position: absolute;
+    bottom: 10%;
+    right: 40%;
+}
+
+.blackKey span{
+    position: absolute;
+    bottom: 10%;
+    right: 40%;
+}
+
+.whiteKey:active{
+    background-color:blue;
+}
+
+.blackKey:active{
+    background-color:blue;
+}
+/*Navigation Menu Styling*/
+.topNavMenu {
+    overflow: hidden;
+    background-color: rgb(17, 17, 17);
+}
+
+.topNavMenu a {
+    float: left;
+    color: #f2f2f2;
+    display: block;
+    padding: 16px 18px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.topNavMenu a:hover {
+    color: black;
+    background-color: #ddd;
+}
+
+.active {
+    color: white;
+    background-color: rgb(42, 144, 175);
+}
+
+.topNavMenu .icon {
+    display: none;
+}
+
+/*If the screen is less than 601px, hide all but the first link "play"*/
+@media screen and (max-width: 600px) {
+    .topNavMenu a:not(:first-child) {display: none;}
+    .topNavMenu a.icon {
+        float: right;
+        display: block;
+    }
+}
+
+/*Displays vertically the links when icon is pressed*/
+@media screen and (max-width: 600px) {
+    .topNavMenu.responsive {
+        position: relative;
+    }
+    .topNavMenu.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topNavMenu.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}

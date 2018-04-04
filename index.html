@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="./scripts/audioStuff.js"></script>
@@ -13,102 +14,29 @@
             setup(); // in "./scripts/audioStuff.js"
         });
     </script>
-    <!--No style is final, just testing-->
-    <style>
-        /*If you don't want the text of something to be selectable, use this class*/
-        .noselect {
-            -webkit-touch-callout: none; /* iOS Safari */
-                -webkit-user-select: none; /* Safari */
-                -khtml-user-select: none; /* Konqueror HTML */
-                -moz-user-select: none; /* Firefox */
-                    -ms-user-select: none; /* Internet Explorer/Edge */
-                        user-select: none; /* Non-prefixed version, currently
-                                            supported by Chrome and Opera */
-        }
-
-        #Title{
-            background-color: rgb(182, 245, 196);
-            height: 100%;
-        }
-
-        #recordButton{
-            height:40px;
-            width:40px;
-            float:right;
-            margin-top: 2%;
-            margin-left: 25%;
-            margin-right: 25%;
-        }
-        .whiteKey{
-            position: relative;
-            display:inline-block;
-            vertical-align: top;
-            border-style: solid;
-            border-width: 0.01em;
-            background-color: white;
-            color: black;
-            left: 0px;
-            top: 0px;
-            width: 55px;
-            height: 300px;
-            z-index: 1;
-        }
-
-        .blackKey{
-            position: relative;
-            display:inline-block;
-            vertical-align: top;
-            border-style: solid;
-            border-width: 0.01em;
-            background-color: black;
-            color: white;
-            /*left: 75px;
-            top: 100px;*/
-            width: 55px;
-            height: 200px;
-            z-index: 2;
-        }
-
-        .PianoComponent{
-            margin-left: 25%;
-            margin-right: 25%;
-            margin-bottom: 2%;
-            display:inline-block;
-            border-style:double;
-            display: flex;
-        }
-
-        .octaveButtons{
-            display:flex;
-            float:right;
-        }
-        
-        .whiteKey span{
-            position: absolute;
-            bottom: 10%;
-            right: 40%;
-        }
-
-        .blackKey span{
-            position: absolute;
-            bottom: 10%;
-            right: 40%;
-        }
-
-        .whiteKey:active{
-            background-color:blue;
-        }
-
-        .blackKey:active{
-            background-color:blue;
-        }
-    </style>
 </head>
 
 <!--The piano component is not done, it is not responsive and is missing a lot of formatting stuff in general.
      I believe it may be safe to start associating the js functions to the onclicks on the correct IDs of the keys
      but these may change if the current design cannot be transferred to responsive design, I will however make sure the ids stay the same-->
 <body>
+<!--TopNavMenu-->
+<div class="topNavMenu" id="navMenu">
+        <a href="#play" class="active">Play</a>
+        <a href="#search">Search</a>
+        <a href="javascript:void(0);" class="icon" onclick="mobileToggle()">&#9776;</a>
+</div>
+<script>
+    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+    function mobileToggle() {
+        var x = document.getElementById("navMenu");
+        if (x.className === "topNavMenu") {
+            x.className += " responsive";
+        } else {
+            x.className = "topNavMenu";
+        }
+    }
+</script>
 <!-- This is the container for the title text-->
 <div class="row">
     <div class="col-sm-12">
