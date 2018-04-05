@@ -15,7 +15,6 @@
         });
     </script>
 </head>
-
 <!--The piano component is not done, it is not responsive and is missing a lot of formatting stuff in general.
      I believe it may be safe to start associating the js functions to the onclicks on the correct IDs of the keys
      but these may change if the current design cannot be transferred to responsive design, I will however make sure the ids stay the same-->
@@ -47,6 +46,8 @@
             </div>
         </div>
     </div>
+
+    <div id="Mobile"><h3><b>You are on mobile! Flip your devices to landscape view to play</b></h3></div>
 
     <!--The Record button container, currently on its own-->
     <div class="row">
@@ -94,11 +95,9 @@
     </div>
 
     <!--Matt's test buttons-->
-    <div id="piano">
-        <button id="but_bass" class="noselect">Bass</button>
-    </div>
     <div class="user_parameters">
-        <span>Current waveform: </span>
+        <button id="but_bass" class="noselect">Bass</button>
+        <span class="noselect">Current waveform: </span>
         <select id="waveSlider" name="waveSlider">
             <option value="sine">Sine</option>
             <option value="square" selected>Square</option>

@@ -143,6 +143,25 @@
         display: block;
         text-align: left;
     }
+
+    #Mobile{
+        display:inline;
+    }
+
+    .PianoComponent{
+        display:none;
+    }
+
+    #recordButton{
+        display:none;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-width: 600px)
+{
+    #Mobile{
+        display: none;
+    }
 }
 
 @media screen and (orientation: landscape) and (max-width: 1000px)
