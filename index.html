@@ -20,112 +20,112 @@
      I believe it may be safe to start associating the js functions to the onclicks on the correct IDs of the keys
      but these may change if the current design cannot be transferred to responsive design, I will however make sure the ids stay the same-->
 <body>
-<!--TopNavMenu-->
-<div class="topNavMenu" id="navMenu">
-        <a href="index.html" class="active">Play</a>
-        <a href="search.html">Search</a>
-        <a href="javascript:void(0);" class="icon" onclick="mobileToggle()">&#9776;</a>
-</div>
-<script>
-    /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
-    function mobileToggle() {
-        var x = document.getElementById("navMenu");
-        if (x.className === "topNavMenu") {
-            x.className += " responsive";
-        } else {
-            x.className = "topNavMenu";
+    <!--TopNavMenu-->
+    <div class="topNavMenu" id="navMenu">
+            <a href="index.html"><span class="noselect">Play</span></a>
+            <a href="search.html"><span class="noselect">Search</span></a>
+            <a href="javascript:void(0);" class="icon" onclick="mobileToggle()">&#9776;</a>
+    </div>
+    <script>
+        /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+        function mobileToggle() {
+            var x = document.getElementById("navMenu");
+            if (x.className === "topNavMenu") {
+                x.className += " responsive";
+            } else {
+                x.className = "topNavMenu";
+            }
         }
-    }
-</script>
-<!-- This is the container for the title text-->
-<div class="row">
-    <div class="col-sm-12">
-        <div class="TitleContainer">
-            <div id="Title">
-                <h1 style="text-align:center">Online Web Synthesizer</h1>
+    </script>
+    <!-- This is the container for the title text-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="TitleContainer">
+                <div id="Title">
+                    <h1 style="text-align:center">Online Web Synthesizer</h1>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!--The Record button container, currently on its own-->
-<div class="row">
-    <div class="col-sm-12"> 
-        <div class="recordButtonContainer">
-                <button id="recordButton" class="noselect"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
-        </div>
-    </div>
-</div>
-
-<!--The Piano component container-->
-<div class="row">
-    <div class="col-sm-12 mx-sm-2">
-        <div class="PianoComponent">
-            <div id="a" value="0" class="whiteKey"><span class="noselect">A</span></div>
-            <div id="w" value="1" class="blackKey"><span class="noselect">W</span></div>
-            <div id="s" value="2" class="whiteKey"><span class="noselect">S</span></div>
-            <div id="e" value="3" class="blackKey"><span class="noselect">E</span></div>
-            <div id="d" value="4" class="whiteKey"><span class="noselect">D</span></div>
-            <div id="f" value="5" class="whiteKey"><span class="noselect">F</span></div>
-            <div id="t" value="6" class="blackKey"><span class="noselect">T</span></div>
-            <div id="g" value="7" class="whiteKey"><span class="noselect">G</span></div>
-            <div id="y" value="8" class="blackKey"><span class="noselect">Y</span></div>
-            <div id="h" value="9" class="whiteKey"><span class="noselect">H</span></div>
-            <div id="u" value="10" class="blackKey"><span class="noselect">U</span></div>
-            <div id="j" value="11" class="whiteKey"><span class="noselect">J</span></div>
-            <div id="k" value="12" class="whiteKey"><span class="noselect">K</span></div>
-            <div id="o" value="13" class="blackKey"><span class="noselect">O</span></div>
-            <div id="l" value="14" class="whiteKey"><span class="noselect">L</span></div>
-            <div id="p" value="15" class="blackKey"><span class="noselect">P</span></div>
-            <div id="semiColon" value="16" class="whiteKey"><span class="noselect">;</span></div>
-            <div id="apostrophe" value="17" class="whiteKey"><span class="noselect">'</span></div>
-        </div>
-    </div>
-</div>
-
-<!--The octave button container-->
-<div class="row">
-    <div class="col-sm-4">
-        <div class="octaveButtons">
-            <button id="octaveDown" style="width:30px;height:20px;" class="noselect">-</button>
-            <button id="octaveUp" style="width:30px;height:20px;" class="noselect">+</button>
-        </div>
-    </div>
-</div>
-
-<!--Matt's test buttons-->
-<div id="piano">
-    <button id="but_bass" class="noselect">Bass</button>
-</div>
-<div class="user_parameters">
-    <span>Current waveform: </span>
-    <select id="waveSlider" name="waveSlider">
-        <option value="sine">Sine</option>
-        <option value="square" selected>Square</option>
-        <option value="sawtooth">Sawtooth</option>
-        <option value="triangle">Triangle</option>
-        <option value="custom">Custom</option>
-    </select>
-</div>
-
-<!--How to text stuff //will be the last container on the site-->
-<div class="row">
-    <div class="col-sm-12">
-        <div id="Information">
-            <div id="HowToUse">
-                <h2>How to use:</h2>
-                    <h4>There are two possible ways to play the Online Web Synthesizer:</h4>
-                        <ul>
-                            <li>You can click the notes directly with your mouse or touch screen device.</li>
-                        </br>
-                            <li>If you have access to a keyboard, you can use the keys on your keyboard associated to the piano, these are shown on the visual component.</li>
-                        </ul>
-                    <h4>Click the - or + buttons to change octaves or use the z/x keys.</h4>
-                    <h4>To record: click the record button in the top right of the Web Synthesizer.</h4>
-                    <h4>To see user recordings: Click here or click the Search tab.</h4>
+    <!--The Record button container, currently on its own-->
+    <div class="row">
+        <div class="col-sm-12"> 
+            <div class="recordButtonContainer">
+                    <button id="recordButton" class="noselect"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
             </div>
         </div>
     </div>
-</div>
+
+    <!--The Piano component container-->
+    <div class="row">
+        <div class="col-sm-12 mx-sm-2">
+            <div class="PianoComponent">
+                <div id="a" value="0" class="whiteKey"><span class="noselect">A</span></div>
+                <div id="w" value="1" class="blackKey"><span class="noselect">W</span></div>
+                <div id="s" value="2" class="whiteKey"><span class="noselect">S</span></div>
+                <div id="e" value="3" class="blackKey"><span class="noselect">E</span></div>
+                <div id="d" value="4" class="whiteKey"><span class="noselect">D</span></div>
+                <div id="f" value="5" class="whiteKey"><span class="noselect">F</span></div>
+                <div id="t" value="6" class="blackKey"><span class="noselect">T</span></div>
+                <div id="g" value="7" class="whiteKey"><span class="noselect">G</span></div>
+                <div id="y" value="8" class="blackKey"><span class="noselect">Y</span></div>
+                <div id="h" value="9" class="whiteKey"><span class="noselect">H</span></div>
+                <div id="u" value="10" class="blackKey"><span class="noselect">U</span></div>
+                <div id="j" value="11" class="whiteKey"><span class="noselect">J</span></div>
+                <div id="k" value="12" class="whiteKey"><span class="noselect">K</span></div>
+                <div id="o" value="13" class="blackKey"><span class="noselect">O</span></div>
+                <div id="l" value="14" class="whiteKey"><span class="noselect">L</span></div>
+                <div id="p" value="15" class="blackKey"><span class="noselect">P</span></div>
+                <div id="semiColon" value="16" class="whiteKey"><span class="noselect">;</span></div>
+                <div id="apostrophe" value="17" class="whiteKey"><span class="noselect">'</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!--The octave button container-->
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="octaveButtons">
+                <button id="octaveDown" style="width:30px;height:20px;" class="noselect">-</button>
+                <button id="octaveUp" style="width:30px;height:20px;" class="noselect">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Matt's test buttons-->
+    <div id="piano">
+        <button id="but_bass" class="noselect">Bass</button>
+    </div>
+    <div class="user_parameters">
+        <span>Current waveform: </span>
+        <select id="waveSlider" name="waveSlider">
+            <option value="sine">Sine</option>
+            <option value="square" selected>Square</option>
+            <option value="sawtooth">Sawtooth</option>
+            <option value="triangle">Triangle</option>
+            <option value="custom">Custom</option>
+        </select>
+    </div>
+
+    <!--How to text stuff //will be the last container on the site-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="Information">
+                <div id="HowToUse">
+                    <h2>How to use:</h2>
+                        <h4>There are two possible ways to play the Online Web Synthesizer:</h4>
+                            <ul>
+                                <li>You can click the notes directly with your mouse or touch screen device.</li>
+                            </br>
+                                <li>If you have access to a keyboard, you can use the keys on your keyboard associated to the piano, these are shown on the visual component.</li>
+                            </ul>
+                        <h4>Click the - or + buttons to change octaves or use the z/x keys.</h4>
+                        <h4>To record: click the record button in the top right of the Web Synthesizer.</h4>
+                        <h4>To see user recordings: Click here or click the Search tab.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

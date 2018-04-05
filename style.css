@@ -107,9 +107,10 @@
 .topNavMenu a:hover {
     color: black;
     background-color: #ddd;
+    text-decoration: none;
 }
 
-.active {
+.topNavMenu a:active{
     color: white;
     background-color: rgb(42, 144, 175);
 }
