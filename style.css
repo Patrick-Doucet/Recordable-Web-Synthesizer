@@ -144,3 +144,26 @@
         text-align: left;
     }
 }
+
+@media screen and (orientation: landscape) and (max-width: 1000px)
+{
+    #Information{
+        display: none;
+    }
+
+    .TitleContainer{
+        display: none;
+    }
+
+    .topNavMenu{
+        display: none;
+    }
+
+    .PianoComponent{
+        width: 100%;
+        height: 100%;
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-bottom: 0%;
+    }
+}
