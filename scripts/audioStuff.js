@@ -2,7 +2,7 @@ let audioCtx = new (AudioContext || webkitAudioContext)(); // audiocontext objec
 let masterGainNode = null;
 let oscillatorList = [];
 let noteFreq = null;
-
+let qwertyDivMap = {};
 
 // TEMPORARY FUNCTION, should store values in db and fetch them at page load
 // @jean
@@ -112,7 +112,7 @@ function createNoteTable() {
 }
 
 function setup(){
-    volumeValue = 50; // TODO get volume from slider
+    volumeValue = 0.5; // (float between 0 and 1) // TODO get volume from slider
     masterGainNode = audioCtx.createGain();
     masterGainNode.connect(audioCtx.destination);
     masterGainNode.gain.value = volumeValue;
@@ -125,11 +125,17 @@ function setup(){
         oscillatorList[i] = [];
     }
 
-    // Give the piano keys some functionnality
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
+        // Deal with mouse clicks on the piano keys
         $(this).on("mousedown mouseover", notePressed);
         $(this).on("mouseup mouseleave", noteReleased);
+
+        qwertyDivMap[$(this).attr('value')] = $(this).attr('id');
     });
+
+    // Deal with qwerty keyboard clicks
+    $(document).keydown(userPressedAKey);
+    $(document).keyup(userReleasedAKey);
 };
 
 function record(){
@@ -138,12 +144,31 @@ function record(){
     // @Jean : Calls for saving stuff to db would go here or in helper scripts
 };
 
-//VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+//VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 //V############################################################V
 //V######## BELOW ARE FUNCTIONS WHICH DEAL WITH PIANO #########V
 //V############# KEY CLICKS AND PLAYBACK ######################V
 //V############################################################V
-//VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+//VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+function userPressedAKey(e){
+    console.log("pressing");
+    var c = String.fromCharCode(e.keyCode).toLowerCase();
+    if(c==';'){c='semicolon';}
+    if(c=='\''){c='apostrophe';}
+    let dataset = e.target.dataset;
+    dataset["value"] = $("#"+c).attr('value');
+    notePressed(e);
+};
+
+function userReleasedAKey(e){
+    var c = String.fromCharCode(e.keyCode).toLowerCase();
+    if(c==';'){c='semicolon';}
+    if(c=='\''){c='apostrophe';}
+    let dataset = e.target.dataset;
+    dataset["value"] = $("#"+c).attr('value');
+    noteReleased(e);
+};
+
 function playTone(freq){
     let osc = audioCtx.createOscillator();
     osc.connect(masterGainNode);
@@ -161,7 +186,7 @@ function playTone(freq){
     return osc;
 };
 function notePressed(e){
-    if(e.buttons & 1) {
+    if(e.buttons & 1) { // left mouse click
         let dataset = e.target.dataset;
         var tone = e.target.attributes.value.value;
         var octave = 3;
@@ -173,17 +198,36 @@ function notePressed(e){
             var freq = noteFreq[octave+1][tone%12];
         }
         if(!dataset["pressed"]){
-            oscillatorList[tone] = playTone(freq); // TODO
+            oscillatorList[tone] = playTone(freq);
+            dataset["pressed"] = "yes";
+        }
+    }else if(e.type == "keydown"){
+        let dataset = e.target.dataset;
+        var tone = dataset["value"];
+        var octave = 3;
+        if(tone < 12){
+            // 12 notes from the current octave
+            var freq = noteFreq[octave][tone];
+        }else{
+            // 6 ish from the next octave
+            var freq = noteFreq[octave+1][tone%12];
+        }
+        if(!dataset["pressed"]){
+            oscillatorList[tone] = playTone(freq);
             dataset["pressed"] = "yes";
         }
     }
 };
 function noteReleased(e){
     let dataset = e.target.dataset;
-    if (dataset && dataset["pressed"] == "yes") {
+    if(e.type == "keyup"){
+        var tone = dataset["value"];
+    }else{
         var tone = e.target.attributes.value.value;
-        oscillatorList[tone].stop(); // TODO
-        oscillatorList[tone] = null; // TODO
+    }
+    if (dataset && dataset["pressed"] == "yes") {
+        oscillatorList[tone].stop();
+        oscillatorList[tone] = null;
         delete dataset["pressed"];
     }
 };
