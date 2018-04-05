@@ -9,6 +9,12 @@
                                     supported by Chrome and Opera */
 }
 
+html, body{
+     max-width:100%;
+     max-height:100%;
+     overflow:hidden;
+}
+
 #Title{
     font-family: Georgia, Times, 'Times New Roman', serif;
     text-shadow: 3px 1px black;
@@ -142,6 +148,25 @@
         float: none;
         display: block;
         text-align: left;
+    }
+
+    #Mobile{
+        display:inline;
+    }
+
+    .PianoComponent{
+        display:none;
+    }
+
+    #recordButton{
+        display:none;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-width: 600px)
+{
+    #Mobile{
+        display: none;
     }
 }
 
