@@ -25,6 +25,16 @@
                 x.className = "topNavMenu";
             }
         }
+	
+	$(document).ready(function(){
+		$('#searchinputs').children().hide();
+		$($('#searchType').val()).show();
+		$('#searchType').change(function(){
+			selected = $(this).val();
+			$('#searchinputs').children().hide();
+			$(selected).show();	
+		});
+	});
     </script>
 
     <!-- This is the container for the title text-->
@@ -37,5 +47,29 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Container for the search function -->
+    <div class="row">
+	<div class="col-sm-12">
+
+		<label>Seach by </label>
+		<select id="searchType">
+			<option value="#artist">Artist</option>
+			<option value="#name">Name</option>
+			<option value="#date_created">Date Created</option>
+		</select><br>
+
+		<div class="SearchInputs" id="searchinputs">
+		<input type="text" name="artist" id="artist"></input><br>
+		<input type="text" name="name" id="name"></input><br>
+		<input type="date" name="date_created" id="date_created"></input><br>
+		</div>	
+		<button type="button" onclick=hidestuff()>Search</button><br>	
+
+		<div class="SearchResults" id="searchresults">
+
+
+		</div>
+	</div>
+    </div>
 </body>
