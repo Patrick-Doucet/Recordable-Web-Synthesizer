@@ -34,6 +34,22 @@
 			$('#searchinputs').children().hide();
 			$(selected).show();	
 		});
+		$('#startsearch').click(function () {
+			var field = $('#searchType').val();
+			var column = $(field).attr('name');
+			var val = $(field).val();
+			console.log(val + ` ` + column + ` ` + field);
+			$.ajax({
+			url : 'search/music.php',
+			type : 'GET',
+			data : { 'type': column, 'val': val},
+			dataType : 'html',
+			success : function(res, statut)
+			{
+				$('#searchresults').html(res);
+			}
+			});
+		});
 	});
     </script>
 
@@ -64,7 +80,7 @@
 		<input type="text" name="name" id="name"></input><br>
 		<input type="date" name="date_created" id="date_created"></input><br>
 		</div>	
-		<button type="button" onclick=hidestuff()>Search</button><br>	
+		<button type="button" id="startsearch">Search</button><br>	
 
 		<div class="SearchResults" id="searchresults">
 
