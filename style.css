@@ -64,7 +64,6 @@ html, body{
 .PianoComponent{
     margin-left: 25%;
     margin-right: 25%;
-    margin-bottom: 2%;
     display:inline-block;
     border-style:double;
     display: flex;
@@ -73,6 +72,8 @@ html, body{
 .octaveButtons{
     display:flex;
     float:right;
+    margin-left: 25%;
+    margin-right: 25%;
 }
 
 .whiteKey span{
@@ -126,7 +127,7 @@ html, body{
 }
 
 /*If the screen is less than 601px, hide all but the first link "play"*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .topNavMenu a:not(:first-child) {display: none;}
     .topNavMenu a.icon {
         float: right;
@@ -135,7 +136,7 @@ html, body{
 }
 
 /*Displays vertically the links when icon is pressed*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .topNavMenu.responsive {
         position: relative;
     }
@@ -161,9 +162,13 @@ html, body{
     #recordButton{
         display:none;
     }
+
+    .octaveButtons{
+        display:none;
+    }
 }
 
-@media screen and (orientation: landscape) and (min-width: 600px)
+@media screen and (orientation: landscape) and (min-width: 500px)
 {
     #Mobile{
         display: none;
@@ -190,5 +195,23 @@ html, body{
         margin-left: 0%;
         margin-right: 0%;
         margin-bottom: 0%;
+    }
+
+    .octaveButtons{
+        display: show;
+        float: right;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    #recordButton{
+        float:right;
+        margin-top: 0%;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    .user_parameters{
+        display: none;
     }
 }
