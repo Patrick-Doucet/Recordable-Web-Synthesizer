@@ -7,7 +7,7 @@ $col = $_GET['type'];
 $val = $_GET['val'];
 
 
-$requete = "SELECT * FROM music WHERE $col = '$val'";
+$requete = "SELECT * FROM music WHERE UPPER($col) = UPPER('$val')";
 $results = mysqli_query($conn, $requete);
 
 echo '<table class="resultTable">';
