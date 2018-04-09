@@ -141,6 +141,20 @@ html, body{
     margin-left: 25%;
 }
 
+#Information{
+    margin-top: 1%;
+}
+
+/*Float text to left of navbar*/
+#fllbutton{
+    font: Arial;
+    color: rgb(200, 200, 200);
+}
+
+#fllbutton:hover{
+    background-color: black;
+}
+
 /*If the screen is less than 601px, hide all but the first link "play"*/
 @media screen and (max-width: 500px) {
     .topNavMenu a:not(:first-child) {display: none;}
