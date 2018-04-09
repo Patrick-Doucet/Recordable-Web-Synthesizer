@@ -126,6 +126,21 @@ html, body{
     display: none;
 }
 
+.user_parameters{
+    margin-top:0.5%;
+    margin-left: 25%;
+    margin-right:25%;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgb(233, 233, 233);
+}
+
+#userParamText{
+    font: Arial;
+    margin-left: 25%;
+}
+
 /*If the screen is less than 601px, hide all but the first link "play"*/
 @media screen and (max-width: 500px) {
     .topNavMenu a:not(:first-child) {display: none;}
@@ -165,6 +180,12 @@ html, body{
 
     .octaveButtons{
         display:none;
+    }
+
+    .user_parameters{
+        margin-top:1%;
+        margin-left: 10%;
+        margin-right:10%;
     }
 }
 
@@ -212,6 +233,10 @@ html, body{
     }
 
     .user_parameters{
+        display: none;
+    }
+
+    #userParamText{
         display: none;
     }
 }
