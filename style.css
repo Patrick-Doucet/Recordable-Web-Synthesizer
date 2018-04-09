@@ -152,7 +152,7 @@ html, body{
 }
 
 #fllbutton:hover{
-    background-color: black;
+    background-color: rgb(17, 17, 17);
 }
 
 /*If the screen is less than 601px, hide all but the first link "play"*/
