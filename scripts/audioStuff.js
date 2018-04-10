@@ -153,8 +153,7 @@ function record(){
 function userPressedAKey(e){
     console.log("pressing");
     var c = String.fromCharCode(e.keyCode).toLowerCase();
-    if(c==';'){c='semicolon';}
-    if(c=='\''){c='apostrophe';}
+    if(c==';'){c='semiColon';}
     let dataset = e.target.dataset;
     dataset["value"] = $("#"+c).attr('value');
     notePressed(e);
@@ -162,8 +161,7 @@ function userPressedAKey(e){
 
 function userReleasedAKey(e){
     var c = String.fromCharCode(e.keyCode).toLowerCase();
-    if(c==';'){c='semicolon';}
-    if(c=='\''){c='apostrophe';}
+    if(c==';'){c='semiColon';}
     let dataset = e.target.dataset;
     dataset["value"] = $("#"+c).attr('value');
     noteReleased(e);
