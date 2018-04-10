@@ -162,6 +162,7 @@ function userPressedAKey(e){
     //console.log(e.which);
     var c = String.fromCharCode(e.keyCode).toLowerCase();
     if(c==';'){c='semiColon';}
+    $("#" + c).css('background-color', 'blue');
     let dataset = e.target.dataset;
     dataset["value"] = $("#"+c).attr('value');
     notePressed(e);
@@ -170,6 +171,7 @@ function userPressedAKey(e){
 function userReleasedAKey(e){
     var c = String.fromCharCode(e.keyCode).toLowerCase();
     if(c==';'){c='semiColon';}
+    $("#" + c).css('background-color', '');
     let dataset = e.target.dataset;
     dataset["value"] = $("#"+c).attr('value');
     noteReleased(e);

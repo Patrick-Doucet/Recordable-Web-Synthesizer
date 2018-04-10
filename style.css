@@ -155,8 +155,8 @@ html, body{
     background-color: rgb(17, 17, 17);
 }
 
-/*If the screen is less than 601px, hide all but the first link "play"*/
-@media screen and (max-width: 500px) {
+/*If the screen is less than 501px, hide all but the first link "play"*/
+@media screen and (max-width: 500px) and (orientation: portrait){
     .topNavMenu a:not(:first-child) {display: none;}
     .topNavMenu a.icon {
         float: right;
@@ -165,7 +165,7 @@ html, body{
 }
 
 /*Displays vertically the links when icon is pressed*/
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (orientation: portrait){
     .topNavMenu.responsive {
         position: relative;
     }
