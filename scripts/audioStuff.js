@@ -3,6 +3,7 @@ let masterGainNode = null;
 let oscillatorList = [];
 let noteFreq = null;
 let qwertyDivMap = {};
+let octave = 3;
 
 // TEMPORARY FUNCTION, should store values in db and fetch them at page load
 // @jean
@@ -133,6 +134,13 @@ function setup(){
         qwertyDivMap[$(this).attr('value')] = $(this).attr('id');
     });
 
+    $('#octaveDown').click(function(e){
+        octave = Math.max(1, octave - 1); // dont go below 1
+    });
+    $('#octaveUp').click(function(e){
+        octave = Math.min(6, octave + 1); // dont go above 6
+    });
+
     // Deal with qwerty keyboard clicks
     $(document).keydown(userPressedAKey);
     $(document).keyup(userReleasedAKey);
@@ -187,7 +195,6 @@ function notePressed(e){
     if(e.buttons & 1) { // left mouse click
         let dataset = e.target.dataset;
         var tone = e.target.attributes.value.value;
-        var octave = 3;
         if(tone < 12){
             // 12 notes from the current octave
             var freq = noteFreq[octave][tone];
@@ -202,7 +209,6 @@ function notePressed(e){
     }else if(e.type == "keydown"){
         let dataset = e.target.dataset;
         var tone = dataset["value"];
-        var octave = 3;
         if(tone < 12){
             // 12 notes from the current octave
             var freq = noteFreq[octave][tone];
