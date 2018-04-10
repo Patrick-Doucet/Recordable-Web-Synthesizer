@@ -134,6 +134,7 @@ function setup(){
         qwertyDivMap[$(this).attr('value')] = $(this).attr('id');
     });
 
+    // Functionnality for octave up and down buttons
     $('#octaveDown').click(function(e){
         octave = Math.max(1, octave - 1); // dont go below 1
     });
@@ -147,9 +148,8 @@ function setup(){
 };
 
 function record(){
-    // TODO
-    // add helper functions for events
-    // @Jean : Calls for saving stuff to db would go here or in helper scripts
+    var dest = audioCtx.createMediaStreamDestination();
+    var mediaRecorder = new MediaRecorder(dest.stream);
 };
 
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -159,7 +159,7 @@ function record(){
 //V############################################################V
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 function userPressedAKey(e){
-    console.log("pressing");
+    //console.log(e.which);
     var c = String.fromCharCode(e.keyCode).toLowerCase();
     if(c==';'){c='semiColon';}
     let dataset = e.target.dataset;
@@ -191,6 +191,14 @@ function playTone(freq){
 
     return osc;
 };
+
+// TODO: @matt @sandermfc tomorrow problem
+// PROBLEM WHEN PRESSING MORE THAN 1 KEYS:
+// first key is pressed and held
+// 2nd key is pushed in, HOWEVER, !dataset["pressed"] evaluates to false because it was set by the first one
+// sound doesnt play but no error yet
+// 2nd key gets let go, because dataset["pressed"] is true from first key, we try to .stop() on the 2nd.
+// that key has no .stop() method and theres an error.
 function notePressed(e){
     if(e.buttons & 1) { // left mouse click
         let dataset = e.target.dataset;
@@ -209,6 +217,7 @@ function notePressed(e){
     }else if(e.type == "keydown"){
         let dataset = e.target.dataset;
         var tone = dataset["value"];
+        console.log(tone);
         if(tone < 12){
             // 12 notes from the current octave
             var freq = noteFreq[octave][tone];
@@ -217,6 +226,7 @@ function notePressed(e){
             var freq = noteFreq[octave+1][tone%12];
         }
         if(!dataset["pressed"]){
+            console.log("in pressed");
             oscillatorList[tone] = playTone(freq);
             dataset["pressed"] = "yes";
         }
