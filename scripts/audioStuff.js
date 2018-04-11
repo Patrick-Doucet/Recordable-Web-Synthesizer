@@ -57,6 +57,12 @@ function setup(){
     masterGainNode.gain.value = volumeValue;
     
     mediaStreamDestination = audioCtx.createMediaStreamDestination();
+    mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
+    mediaRecorder.ondataavailable = function(e) {
+        // push each chunk (blobs) in an array
+        console.log(e.data);
+        chunks.push(e.data);
+    };
 
     noteFreq = createNoteTable();
 
@@ -92,14 +98,7 @@ function setup(){
 
 function record(e){
     if(!currentlyRecording){
-        mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
-
-        mediaRecorder.ondataavailable = function(e) {
-            // push each chunk (blobs) in an array
-            chunks.push(e.data);
-        };
-        
-        mediaRecorder.start();
+        mediaRecorder.start(1000);
         currentlyRecording = true;
     }else{
         mediaRecorder.stop();
@@ -112,6 +111,8 @@ function record(e){
         var url = URL.createObjectURL(blob);
         var audio = document.createElement('audio');
         audio.src = url;
+        audio.type = 'audio/ogg';
+        console.log(audio);
     }
 };
 
@@ -143,7 +144,7 @@ function playTone(freq){
     let osc = audioCtx.createOscillator();
     osc.connect(masterGainNode);
     if(currentlyRecording){
-        osc.connect(medisStreamDestination);
+        osc.connect(mediaStreamDestination);
     }
 
     var type = $('#waveSlider option:selected').val();
