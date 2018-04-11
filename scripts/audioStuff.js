@@ -1,9 +1,16 @@
 let audioCtx = new (AudioContext || webkitAudioContext)(); // audiocontext object for different browsers
 let masterGainNode = null;
 let oscillatorList = [];
+
+let mediaStreamDestination = null;
+let mediaRecorder = null;
+
 let noteFreq = null;
 let qwertyDivMap = {};
 let octave = 3;
+
+let currentlyRecording = false;
+let chunks = [];
 
 // TEMPORARY FUNCTION, should store values in db and fetch them at page load
 // @jean
@@ -49,6 +56,8 @@ function setup(){
     masterGainNode.connect(audioCtx.destination);
     masterGainNode.gain.value = volumeValue;
     
+    mediaStreamDestination = audioCtx.createMediaStreamDestination();
+
     noteFreq = createNoteTable();
 
     // Initialise an oscillator for each piano key
@@ -56,6 +65,9 @@ function setup(){
     for (i=0; i<numOfKeys; i++) {
         oscillatorList[i] = [];
     }
+
+    // Record button
+    $("#recordButton").click(record);
 
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
         // Deal with mouse clicks on the piano keys
@@ -78,9 +90,26 @@ function setup(){
     $(document).keyup(userReleasedAKey);
 };
 
-function record(){
-    var dest = audioCtx.createMediaStreamDestination();
-    var mediaRecorder = new MediaRecorder(dest.stream);
+function record(e){
+    if(!currentlyRecording){
+        mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
+
+        mediaRecorder.ondataavailable = function(e) {
+            // push each chunk (blobs) in an array
+            chunks.push(e.data);
+        };
+        
+        mediaRecorder.start();
+        currentlyRecording = true;
+    }else{
+        mediaRecorder.stop();
+        currentlyRecording = false;
+
+        // dump chunks data into blob
+        var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+        delete mediaRecorder;
+        //document.querySelector("audio").src = URL.createObjectURL(blob);
+    }
 };
 
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
@@ -110,6 +139,9 @@ function userReleasedAKey(e){
 function playTone(freq){
     let osc = audioCtx.createOscillator();
     osc.connect(masterGainNode);
+    if(currentlyRecording){
+        osc.connect(medisStreamDestination);
+    }
 
     var type = $('#waveSlider option:selected').val();
     if(type == "custom"){
