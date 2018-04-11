@@ -67,23 +67,25 @@
 
     <!-- Container for the search function -->
     <div class="row">
-	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<div class="SearchContainer">
+				<label id="SearchBy">Search by </label>
+				<select id="searchType">
+					<option value="#artist">Artist</option>
+					<option value="#name">Name</option>
+				</select><br>
 
-		<label>Search by </label>
-		<select id="searchType">
-			<option value="#artist">Artist</option>
-			<option value="#name">Name</option>
-		</select><br>
+			<div class="SearchInputs" id="searchinputs">
+				<input type="text" name="artist" id="artist"></input><br>
+				<input type="text" name="name" id="name"></input><br>
+			</div>	
+			</div>
+			<div id ="SearchButton">
+				<button type="button" id="startsearch">Search</button><br>	
 
-		<div class="SearchInputs" id="searchinputs">
-		<input type="text" name="artist" id="artist"></input><br>
-		<input type="text" name="name" id="name"></input><br>
-		</div>	
-		<button type="button" id="startsearch">Search</button><br>	
+				<div class="SearchResults" id="searchresults">
 
-		<div class="SearchResults" id="searchresults">
-
-
+			</div>
 		</div>
 	</div>
     </div>

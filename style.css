@@ -155,6 +155,26 @@ html, body{
     background-color: rgb(17, 17, 17);
 }
 
+#SearchBy{
+    font-size: 1.5em;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.SearchContainer{
+    text-align: center;
+}
+
+#searchinputs{
+
+    text-align: center;
+}
+
+#SearchButton{
+    margin-top: 0.2%;
+    width: 100%;
+    text-align: center;
+}
+
 /*If the screen is less than 501px, hide all but the first link "play"*/
 @media screen and (max-width: 500px) and (orientation: portrait){
     .topNavMenu a:not(:first-child) {display: none;}
