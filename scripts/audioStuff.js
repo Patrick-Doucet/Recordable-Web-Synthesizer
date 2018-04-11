@@ -108,7 +108,10 @@ function record(e){
         // dump chunks data into blob
         var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
         delete mediaRecorder;
-        //document.querySelector("audio").src = URL.createObjectURL(blob);
+        
+        var url = URL.createObjectURL(blob);
+        var audio = document.createElement('audio');
+        audio.src = url;
     }
 };
 
