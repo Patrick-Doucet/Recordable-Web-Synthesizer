@@ -11,6 +11,7 @@ let octave = 3;
 
 let currentlyRecording = false;
 let chunks = [];
+let mostRecentAudio = null;
 
 // TEMPORARY FUNCTION, should store values in db and fetch them at page load
 // @jean
@@ -60,7 +61,6 @@ function setup(){
     mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
     mediaRecorder.ondataavailable = function(e) {
         // push each chunk (blobs) in an array
-        console.log(e.data);
         chunks.push(e.data);
     };
 
@@ -98,6 +98,7 @@ function setup(){
 
 function record(e){
     if(!currentlyRecording){
+	chunks = [];
         mediaRecorder.start(1000);
         currentlyRecording = true;
     }else{
@@ -106,12 +107,12 @@ function record(e){
 
         // dump chunks data into blob
         var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
-        delete mediaRecorder;
         
         var url = URL.createObjectURL(blob);
-        //$("#mostRecentPlayback").attr("src", url);
-        var audio = new Audio(url);
-        audio.play();
+        $("#mostRecentPlayback").attr("src", url);
+        
+        mostRecentAudio = new Audio(url);
+	mostRecentAudio.play();
     }
 };
 
