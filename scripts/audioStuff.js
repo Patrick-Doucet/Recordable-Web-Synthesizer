@@ -12,6 +12,7 @@ let octave = 3;
 let currentlyRecording = false;
 let chunks = [];
 let mostRecentAudio = null;
+let mostRecentUrl = "";
 
 // TEMPORARY FUNCTION, should store values in db and fetch them at page load
 // @jean
@@ -108,10 +109,10 @@ function record(e){
         // dump chunks data into blob
         var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
         
-        var url = URL.createObjectURL(blob);
-        $("#mostRecentPlayback").attr("src", url);
+        var mostRecentUrl = URL.createObjectURL(mostRecentUrl);
+        $("#mostRecentPlayback").attr("src", mostRecentUrl);
         
-        mostRecentAudio = new Audio(url);
+        mostRecentAudio = new Audio(mostRecentUrl);
 	mostRecentAudio.play();
     }
 };
