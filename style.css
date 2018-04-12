@@ -89,27 +89,24 @@ html, body{
     right: 40%;
 }
 
-.SearchResults{
-    align: center;
-}
-
 .resultTable{
+    margin: auto;
+    margin-top: 1%;
     text-align: left;
     border-collapse: collapse;
+    border: solid 1px;
+}
+
+.resultTable td, .resultTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 .resultTable th {
     padding-top: 12px;
     padding-bottom: 12px;
-    border: 1px solid #ddd;
-    padding: 8px;
     background-color: dodgerblue;
     color: white;
-}
-
-.resultTable tr {
-    border: 1px solid #ddd;
-    padding: 8px;
 }
 
 .resultTable tr:nth-child(even){
