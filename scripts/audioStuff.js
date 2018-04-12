@@ -112,11 +112,11 @@ function record(e){
         // dump chunks data into blob
         var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
         
-        mostRecentUrl = URL.createObjectURL(mostRecentUrl);
+        var mostRecentUrl = URL.createObjectURL(blob);
         $("#mostRecentPlayback").attr("src", mostRecentUrl);
         
         mostRecentAudio = new Audio(mostRecentUrl);
-	mostRecentAudio.play();
+	    mostRecentAudio.play();
     }
 };
 
@@ -172,7 +172,22 @@ function playTone(freq){
 // 2nd key gets let go, because dataset["pressed"] is true from first key, we try to .stop() on the 2nd.
 // that key has no .stop() method and theres an error.
 function notePressed(e){
-    if(e.buttons & 1) { // left mouse click
+    
+    if(e.type == "keydown"){
+        let dataset = e.target.dataset;
+        var tone = dataset["value"];
+        if(tone < 12){
+            // 12 notes from the current octave
+            var freq = noteFreq[octave][tone];
+        }else{
+            // 6 ish from the next octave
+            var freq = noteFreq[octave+1][tone%12];
+        }
+        if(!keyPressed[tone]){
+            oscillatorList[tone] = playTone(freq);
+            keysPressed[tone] = true;
+        }
+    }else{
         let dataset = e.target.dataset;
         var tone = e.target.attributes.value.value;
         if(tone < 12){
@@ -183,20 +198,6 @@ function notePressed(e){
             var freq = noteFreq[octave+1][tone%12];
         }
         if(!keysPressed[tone]){
-            oscillatorList[tone] = playTone(freq);
-            keysPressed[tone] = true;
-        }
-    }else if(e.type == "keydown"){
-        let dataset = e.target.dataset;
-        var tone = dataset["value"];
-        if(tone < 12){
-            // 12 notes from the current octave
-            var freq = noteFreq[octave][tone];
-        }else{
-            // 6 ish from the next octave
-            var freq = noteFreq[octave+1][tone%12];
-        }
-        if(!dataset["pressed"]){
             oscillatorList[tone] = playTone(freq);
             keysPressed[tone] = true;
         }
