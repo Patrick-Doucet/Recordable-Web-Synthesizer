@@ -96,13 +96,20 @@ function setup(){
     });
 
     // Deal with qwerty keyboard clicks
+    $(document).keydown(function(e){
+        if(e.which == '-' || e.which == '_' || e.which == 'z' || e.which == 'Z'){
+            octave = Math.max(1, octave - 1); // dont go below 1
+        }else if(e.which == '+' || e.which == '=' || e.which == 'x' || e.which == 'X'){
+            octave = Math.max(1, octave - 1); // dont go below 1
+        }
+    });
     $(document).keydown(userPressedAKey);
     $(document).keyup(userReleasedAKey);
 };
 
 function record(e){
     if(!currentlyRecording){
-	chunks = [];
+	    chunks = [];
         mediaRecorder.start(1000);
         currentlyRecording = true;
     }else{
