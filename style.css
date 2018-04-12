@@ -89,6 +89,33 @@ html, body{
     right: 40%;
 }
 
+.SearchResults{
+    align: center;
+}
+
+.resultTable{
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.resultTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.resultTable tr {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.resultTable tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
 .whiteKey:active{
     background-color:blue;
 }
