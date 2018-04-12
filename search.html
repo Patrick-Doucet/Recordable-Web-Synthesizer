@@ -42,7 +42,7 @@
 			console.log(val + ` ` + column + ` ` + field);
 			if($(field)[0].checkValidity()){
 			$.ajax({
-			url : 'search/music.php',
+			url : 'music.php',
 			type : 'GET',
 			data : { 'type': column, 'val': val},
 			dataType : 'html',
