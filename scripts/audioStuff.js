@@ -77,7 +77,7 @@ function setup(){
     }
 
     // Record button
-    $("#recordButton").click(record);
+    $("#recordButton").on("mousedown touchstart",record);
 
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
         // Deal with mouse clicks on the piano keys
@@ -109,7 +109,7 @@ function setup(){
 
 function record(e){
     if(!currentlyRecording){
-	    chunks = [];
+	chunks = [];
         mediaRecorder.start(1000);
         currentlyRecording = true;
     }else{
