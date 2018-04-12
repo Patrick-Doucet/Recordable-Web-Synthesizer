@@ -190,7 +190,7 @@ function notePressed(e){
             // 6 ish from the next octave
             var freq = noteFreq[octave+1][tone%12];
         }
-        if(!keyPressed[tone]){
+        if(!keysPressed[tone]){
             oscillatorList[tone] = playTone(freq);
             keysPressed[tone] = true;
         }
@@ -217,7 +217,7 @@ function noteReleased(e){
     }else{
         var tone = e.target.attributes.value.value;
     }
-    if (dataset && keysPressed[tone] == "yes") {
+    if (dataset && keysPressed[tone] == true) {
         oscillatorList[tone].stop();
         oscillatorList[tone] = null;
         keysPressed[tone] = false;
