@@ -40,6 +40,7 @@
 			var column = $(field).attr('name');
 			var val = $(field).val();
 			console.log(val + ` ` + column + ` ` + field);
+			if($(field)[0].checkValidity()){
 			$.ajax({
 			url : 'search/music.php',
 			type : 'GET',
@@ -50,6 +51,7 @@
 				$('#searchresults').html(res);
 			}
 			});
+			}
 		});
 	});
     </script>
@@ -76,8 +78,8 @@
 				</select><br>
 
 			<div class="SearchInputs" id="searchinputs">
-				<input type="text" name="artist" id="artist"></input><br>
-				<input type="text" name="name" id="name"></input><br>
+				<input type="text" pattern="[a-zA-Z0-9]+" name="artist" id="artist"></input><br>
+				<input type="text" pattern="[a-zA-Z0-9]+" name="name" id="name"></input><br>
 			</div>	
 			</div>
 			<div id ="SearchButton">
