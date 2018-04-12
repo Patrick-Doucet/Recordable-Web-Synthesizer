@@ -109,9 +109,9 @@ function record(e){
         delete mediaRecorder;
         
         var url = URL.createObjectURL(blob);
-
-        $("#mostRecentPlayback").attr("src", url);
-        console.log($("#mostRecentPlayback"));
+        //$("#mostRecentPlayback").attr("src", url);
+        var audio = new Audio(url);
+        audio.play();
     }
 };
 
