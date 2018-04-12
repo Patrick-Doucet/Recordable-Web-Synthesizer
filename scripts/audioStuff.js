@@ -109,7 +109,7 @@ function record(e){
         // dump chunks data into blob
         var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
         
-        var mostRecentUrl = URL.createObjectURL(mostRecentUrl);
+        mostRecentUrl = URL.createObjectURL(mostRecentUrl);
         $("#mostRecentPlayback").attr("src", mostRecentUrl);
         
         mostRecentAudio = new Audio(mostRecentUrl);
