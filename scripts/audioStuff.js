@@ -81,8 +81,8 @@ function setup(){
 
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
         // Deal with mouse clicks on the piano keys
-        $(this).on("mousedown mouseover", notePressed);
-        $(this).on("mouseup mouseleave", noteReleased);
+        $(this).on("mousedown touchstart", notePressed);
+        $(this).on("mouseup mouseleave touchend", noteReleased);
 
         qwertyDivMap[$(this).attr('value')] = $(this).attr('id');
     });
