@@ -41,7 +41,7 @@ html, body{
     color: black;
     left: 0px;
     top: 0px;
-    width: 55px;
+    width: 56px;
     height: 300px;
     z-index: 1;
 }
@@ -53,10 +53,10 @@ html, body{
     border-style: solid;
     border-width: 0.01em;
     background-color: black;
-    color: white;
+    color: black;
     /*left: 75px;
     top: 100px;*/
-    width: 55px;
+    width: 56px;
     height: 200px;
     z-index: 2;
 }
@@ -83,6 +83,7 @@ html, body{
 }
 
 .blackKey span{
+    color: white;
     position: absolute;
     bottom: 10%;
     right: 40%;
