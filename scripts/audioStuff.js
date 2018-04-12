@@ -14,6 +14,8 @@ let chunks = [];
 let mostRecentAudio = null;
 let mostRecentUrl = "";
 
+let keysPressed = [];
+
 // TEMPORARY FUNCTION, should store values in db and fetch them at page load
 // @jean
 function createNoteTable() {
@@ -71,6 +73,7 @@ function setup(){
     var numOfKeys = $('div', $('.PianoComponent')).length;
     for (i=0; i<numOfKeys; i++) {
         oscillatorList[i] = [];
+        keysPressed[i] = false;
     }
 
     // Record button
@@ -179,14 +182,13 @@ function notePressed(e){
             // 6 ish from the next octave
             var freq = noteFreq[octave+1][tone%12];
         }
-        if(!dataset["pressed"]){
+        if(!keysPressed[tone]){
             oscillatorList[tone] = playTone(freq);
-            dataset["pressed"] = "yes";
+            keysPressed[tone] = true;
         }
     }else if(e.type == "keydown"){
         let dataset = e.target.dataset;
         var tone = dataset["value"];
-        console.log(tone);
         if(tone < 12){
             // 12 notes from the current octave
             var freq = noteFreq[octave][tone];
@@ -195,9 +197,8 @@ function notePressed(e){
             var freq = noteFreq[octave+1][tone%12];
         }
         if(!dataset["pressed"]){
-            console.log("in pressed");
             oscillatorList[tone] = playTone(freq);
-            dataset["pressed"] = "yes";
+            keysPressed[tone] = true;
         }
     }
 };
@@ -208,9 +209,9 @@ function noteReleased(e){
     }else{
         var tone = e.target.attributes.value.value;
     }
-    if (dataset && dataset["pressed"] == "yes") {
+    if (dataset && keysPressed[tone] == "yes") {
         oscillatorList[tone].stop();
         oscillatorList[tone] = null;
-        delete dataset["pressed"];
+        keysPressed[tone] = false;
     }
 };
