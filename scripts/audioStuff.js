@@ -77,11 +77,11 @@ function setup(){
     }
 
     // Record button
-    $("#recordButton").click(record);
+    $("#recordButton").on("mousedown touchstart",record);
 
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
         // Deal with mouse clicks on the piano keys
-        $(this).on("mousedown touchstart", notePressed);
+        $(this).on("mousedown mouseenter touchstart", notePressed);
         $(this).on("mouseup mouseleave touchend", noteReleased);
 
         qwertyDivMap[$(this).attr('value')] = $(this).attr('id');
@@ -96,20 +96,13 @@ function setup(){
     });
 
     // Deal with qwerty keyboard clicks
-    $(document).keydown(function(e){
-        if(e.which == '-' || e.which == '_' || e.which == 'z' || e.which == 'Z'){
-            octave = Math.max(1, octave - 1); // dont go below 1
-        }else if(e.which == '+' || e.which == '=' || e.which == 'x' || e.which == 'X'){
-            octave = Math.max(1, octave - 1); // dont go below 1
-        }
-    });
     $(document).keydown(userPressedAKey);
     $(document).keyup(userReleasedAKey);
 };
 
 function record(e){
     if(!currentlyRecording){
-	    chunks = [];
+	chunks = [];
         mediaRecorder.start(1000);
         currentlyRecording = true;
     }else{
@@ -135,7 +128,21 @@ function record(e){
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 function userPressedAKey(e){
     var c = String.fromCharCode(e.keyCode).toLowerCase();
-    if(c==';'){c='semiColon';}
+    console.log(c);
+    switch(c){
+        case 'z':
+            octave = Math.max(1, octave - 1); // dont go below 1
+            return;
+        case 'x':
+            octave = Math.min(6, octave + 1); // dont go above 6
+            return;
+        case ';':
+            c = 'semiColon';
+            break;
+        default:
+            // TODO: cleaner to check if c is in qwertyDivMap here
+            break;
+    }
     $("#" + c).css('background-color', 'blue');
     let dataset = e.target.dataset;
     dataset["value"] = $("#"+c).attr('value');
@@ -159,11 +166,7 @@ function playTone(freq){
     }
 
     var type = $('#waveSlider option:selected').val();
-    if(type == "custom"){
-        // osc.setPeriodicWave(customWaveForm) // TODO
-    }else{
-        osc.type = type;
-    }
+    osc.type = type;
 
     osc.frequency.value = freq;
     osc.start(); // Doesn't actually start playing yet [only in notePressed()]
@@ -194,7 +197,7 @@ function notePressed(e){
             oscillatorList[tone] = playTone(freq);
             keysPressed[tone] = true;
         }
-    }else{
+    }else if(e.type != "mouseenter"){
         let dataset = e.target.dataset;
         var tone = e.target.attributes.value.value;
         if(tone < 12){
