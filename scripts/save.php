@@ -7,8 +7,8 @@ $name = mysqli_real_escape_string($conn, $_POST["name"]);
 $artist = mysqli_real_escape_string($conn, $_POST["artist"]);
 $track = mysqli_real_escape_string($conn, $_POST["track"]);
  */
-$name = "test";
-$artist = "J";
+$name = "Wicked Sounds";
+$artist = "Anonymous";
 $track = file_get_contents("php://input");
 $track_path = "";
 

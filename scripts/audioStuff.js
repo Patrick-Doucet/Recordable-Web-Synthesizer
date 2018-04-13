@@ -131,7 +131,7 @@ function record(e){
     }
 };
 
-function saveblob() { //Illegal invocation error, maybe the data isn't being passed correctly.
+function saveblob() {
 	//var name = prompt("Enter a name for your masterpiece", "NoName");
 	//var artist = prompt("Your name", "NoName");
 	var track = new FormData();
