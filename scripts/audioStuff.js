@@ -55,10 +55,11 @@ function createNoteTable() {
 }
 
 function setup(){
-    volumeValue = 0.5; // (float between 0 and 1) // TODO get volume from slider
     masterGainNode = audioCtx.createGain();
     masterGainNode.connect(audioCtx.destination);
-    masterGainNode.gain.value = volumeValue;
+
+    $("#myRange").change(setVolume);
+    setVolume(); // set volume from slider in masterGainNode
     
     mediaStreamDestination = audioCtx.createMediaStreamDestination();
     mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
@@ -100,6 +101,10 @@ function setup(){
     $(document).keyup(userReleasedAKey);
 };
 
+function setVolume(){
+    masterGainNode.gain.value = $('#myRange').val()/100;
+};
+
 function record(e){
     if(!currentlyRecording){
 	chunks = [];
@@ -128,7 +133,6 @@ function record(e){
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 function userPressedAKey(e){
     var c = String.fromCharCode(e.keyCode).toLowerCase();
-    console.log(c);
     switch(c){
         case 'z':
             octave = Math.max(1, octave - 1); // dont go below 1
