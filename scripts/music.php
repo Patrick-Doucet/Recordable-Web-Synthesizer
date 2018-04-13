@@ -11,11 +11,11 @@ $requete = "SELECT * FROM music WHERE UPPER($col) = UPPER('$val')";
 $results = mysqli_query($conn, $requete);
 
 echo '<table class="resultTable">';
-printf("\n<tr>\n<th>Name</th>\n<th>Artist</th>\n<th>Date Created</th>\n</tr>\n");
+printf("\n<tr>\n<th>Listen</th>\n<th>Name</th>\n<th>Artist</th>\n<th>Date Created</th>\n</tr>\n");
 
 while(($ligne = mysqli_fetch_array($results)) == true)
 {
-	printf("<tr>\n<td>%s</td>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", $ligne['name'], $ligne['artist'], $ligne['date_created']);
+	printf("<tr>\n<td><button type=\"button\" id=\"play%s\" class=\"listenButton\" onclick=\"playTrack(%s)\" >Play</button></td>\n<td>%s</td>\n<td>%s</td>\n<td>%s</td>\n</tr>\n", $ligne['id'], $ligne['id'], $ligne['name'], $ligne['artist'], $ligne['date_created']);
 	
 
 }
