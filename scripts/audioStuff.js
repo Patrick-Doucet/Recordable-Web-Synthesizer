@@ -55,10 +55,11 @@ function createNoteTable() {
 }
 
 function setup(){
-    volumeValue = 0.5; // (float between 0 and 1) // TODO get volume from slider
     masterGainNode = audioCtx.createGain();
     masterGainNode.connect(audioCtx.destination);
-    masterGainNode.gain.value = volumeValue;
+
+    $("#myRange").change(setVolume);
+    setVolume(); // set volume from slider in masterGainNode
     
     mediaStreamDestination = audioCtx.createMediaStreamDestination();
     mediaRecorder = new MediaRecorder(mediaStreamDestination.stream);
@@ -95,9 +96,16 @@ function setup(){
         octave = Math.min(6, octave + 1); // dont go above 6
     });
 
+    // Functionnality for save button
+    $("#playButton").on("mousedown touchstart", playMostRecent);
+
     // Deal with qwerty keyboard clicks
     $(document).keydown(userPressedAKey);
     $(document).keyup(userReleasedAKey);
+};
+
+function setVolume(){
+    masterGainNode.gain.value = $('#myRange').val()/100;
 };
 
 function record(e){
@@ -116,7 +124,13 @@ function record(e){
         $("#mostRecentPlayback").attr("src", mostRecentUrl);
         
         mostRecentAudio = new Audio(mostRecentUrl);
-	    mostRecentAudio.play();
+	    //mostRecentAudio.play();
+    }
+};
+
+function playMostRecent(){
+    if(mostRecentAudio){
+        mostRecentAudio.play();
     }
 };
 
@@ -128,7 +142,6 @@ function record(e){
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 function userPressedAKey(e){
     var c = String.fromCharCode(e.keyCode).toLowerCase();
-    console.log(c);
     switch(c){
         case 'z':
             octave = Math.max(1, octave - 1); // dont go below 1
