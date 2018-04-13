@@ -88,10 +88,10 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="volumeSlider">
-                <p id="volumeText"><b>Volume: </b></p><input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <p id="volumeText" class="noselect"><b>Volume: </b></p><input type="range" min="1" max="100" value="50" class="slider" id="myRange">
             </div>
             <div class="octaveButtons">
-                <p style="margin-top:3%;"><b>Change Octave Down/Up:</b></p>
+                <p style="margin-top:3%;" class="noselect"><b>Change Octave Down/Up:</b></p>
                 <button id="octaveDown" style="width:40px;height:30px;" class="noselect">Z</button>
                 <button id="octaveUp" style="width:40px;height:30px;" class="noselect">X</button>
             </div>
@@ -101,7 +101,7 @@
     <!--The sound button board to change the type of sound emitted from the piano component-->
     <div class="row">
         <div class="col-sm-12">
-            <div id="userParamText"><h4><b>Customizing your sound</b></h4></div>
+            <div id="userParamText" class="noselect"><h4><b>Customizing your sound</b></h4></div>
             <div class="user_parameters">
                 <span class="noselect">Current waveform: </span>
                 <select id="waveSlider" name="waveSlider">
