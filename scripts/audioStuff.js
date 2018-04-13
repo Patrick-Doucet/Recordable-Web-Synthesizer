@@ -96,6 +96,9 @@ function setup(){
         octave = Math.min(6, octave + 1); // dont go above 6
     });
 
+    // Functionnality for save button
+    $("#playButton").on("mousedown touchstart", playMostRecent);
+
     // Deal with qwerty keyboard clicks
     $(document).keydown(userPressedAKey);
     $(document).keyup(userReleasedAKey);
@@ -121,7 +124,13 @@ function record(e){
         $("#mostRecentPlayback").attr("src", mostRecentUrl);
         
         mostRecentAudio = new Audio(mostRecentUrl);
-	    mostRecentAudio.play();
+	    //mostRecentAudio.play();
+    }
+};
+
+function playMostRecent(){
+    if(mostRecentAudio){
+        mostRecentAudio.play();
     }
 };
 
