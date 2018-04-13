@@ -3,8 +3,8 @@ require("connexion.php");
 $conn = mysqli_connect($host, $user, $passwd, $db);
 mysqli_select_db($conn, $db) or die("Unable to select db $db");
 
-$col = $_GET['type'];
-$val = $_GET['val'];
+$col = mysqli_real_escape_string($conn, $_GET['type']);
+$val = mysqli_real_escape_string($conn, $_GET['val']);
 
 
 $requete = "SELECT * FROM music WHERE UPPER($col) = UPPER('$val')";
