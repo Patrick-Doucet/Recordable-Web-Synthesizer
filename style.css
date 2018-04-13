@@ -12,7 +12,7 @@
 html, body{
      max-width:100%;
      max-height:100%;
-     overflow:hidden;
+     overflow-x: hidden;
 }
 
 #Title{
@@ -293,6 +293,11 @@ html, body{
 
 @media screen and (orientation: landscape) and (max-width: 1000px)
 {
+
+    html, body{
+        overflow:hidden;
+    }
+
     #Information{
         display: none;
     }
