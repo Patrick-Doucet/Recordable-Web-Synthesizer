@@ -53,8 +53,9 @@
     <!--The Record button container, currently on its own-->
     <div class="row">
         <div class="col-sm-12"> 
-            <div class="recordButtonContainer">
-                    <button id="recordButton" class="noselect"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
+            <div class="recordPlayButtonContainer">
+                <button id="playButton" class="noselect"><img src="images/PlayButton.png" style="width:20px;height:20px;"></button>
+                <button id="recordButton" class="noselect"><img src="images/recordbutton.png" style="width:20px;height:20px;"></button>
             </div>
         </div>
     </div>
@@ -87,6 +88,9 @@
     <!--The octave button container-->
     <div class="row">
         <div class="col-sm-12">
+            <div class="volumeSlider">
+                <p id="volumeText"><b>Volume: </b></p><input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            </div>
             <div class="octaveButtons">
                 <button id="octaveDown" style="width:40px;height:30px;" class="noselect">-</button>
                 <button id="octaveUp" style="width:40px;height:30px;" class="noselect">+</button>
@@ -125,7 +129,8 @@
                             </ul>
                         <h4>Click the - or + buttons to change octaves or use the z/x keys.</h4>
                         <h4>Change the values on the button board to try different sounds!</h4>
-                        <h4><b>To record:</b> click the record button in the top right of the Web Synthesizer.</h4>
+                        <h4><b>To record:</b> Click the record button in the top right of the Web Synthesizer.</h4>
+                        <h4><b>To listen to your recording:</b> Click the play button in the top right of the Web Synthesizer.</h4>
                         <h4><b>To see user recordings:</b> <a href="search.html">Click here</a> or click the Search tab.</h4>
                 </div>
             </div>

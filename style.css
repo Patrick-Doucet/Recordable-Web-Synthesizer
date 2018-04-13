@@ -23,13 +23,23 @@ html, body{
     height: 100%;
 }
 
+.recordPlayButtonContainer{
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 2%;
+}
+
+#playButton{
+    height:40px;
+    width:40px;
+    float:right;
+}
+
 #recordButton{
     height:40px;
     width:40px;
     float:right;
-    margin-top: 2%;
-    margin-left: 25%;
-    margin-right: 25%;
+
 }
 .whiteKey{
     position: relative;
@@ -74,6 +84,19 @@ html, body{
     float:right;
     margin-left: 25%;
     margin-right: 25%;
+}
+
+.volumeSlider{
+    display:flex;
+    float:left;
+    margin-left:25%;
+    border:solid 1px;
+    background-color: rgb(243, 243, 243);
+}
+
+#volumeText{
+    margin-right:3%;
+    margin-top:3%;
 }
 
 .whiteKey span{
@@ -233,8 +256,21 @@ html, body{
         display:none;
     }
 
+    .recordPlayButtonContainer{
+        display:none;
+    }
+
     #recordButton{
         display:none;
+    }
+
+    .volumeSlider{
+        display:none;
+    }
+
+    #userParamText{
+        text-align: center;
+        margin-left: 0%;
     }
 
     .octaveButtons{
@@ -282,6 +318,10 @@ html, body{
         float: right;
         margin-left: 0%;
         margin-right: 0%;
+    }
+
+    .recordPlayButtonContainer{
+        margin-top: 0%;
     }
 
     #recordButton{
