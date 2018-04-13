@@ -96,13 +96,6 @@ function setup(){
     });
 
     // Deal with qwerty keyboard clicks
-    $(document).keydown(function(e){
-        if(e.which == '-' || e.which == '_' || e.which == 'z' || e.which == 'Z'){
-            octave = Math.max(1, octave - 1); // dont go below 1
-        }else if(e.which == '+' || e.which == '=' || e.which == 'x' || e.which == 'X'){
-            octave = Math.max(1, octave - 1); // dont go below 1
-        }
-    });
     $(document).keydown(userPressedAKey);
     $(document).keyup(userReleasedAKey);
 };
@@ -135,7 +128,21 @@ function record(e){
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 function userPressedAKey(e){
     var c = String.fromCharCode(e.keyCode).toLowerCase();
-    if(c==';'){c='semiColon';}
+    console.log(c);
+    switch(c){
+        case 'z':
+            octave = Math.max(1, octave - 1); // dont go below 1
+            return;
+        case 'x':
+            octave = Math.min(6, octave + 1); // dont go above 6
+            return;
+        case ';':
+            c = 'semiColon';
+            break;
+        default:
+            // TODO: cleaner to check if c is in qwertyDivMap here
+            break;
+    }
     $("#" + c).css('background-color', 'blue');
     let dataset = e.target.dataset;
     dataset["value"] = $("#"+c).attr('value');
@@ -159,11 +166,7 @@ function playTone(freq){
     }
 
     var type = $('#waveSlider option:selected').val();
-    if(type == "custom"){
-        // osc.setPeriodicWave(customWaveForm) // TODO
-    }else{
-        osc.type = type;
-    }
+    osc.type = type;
 
     osc.frequency.value = freq;
     osc.start(); // Doesn't actually start playing yet [only in notePressed()]
