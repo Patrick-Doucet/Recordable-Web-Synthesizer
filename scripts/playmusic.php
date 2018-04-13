@@ -23,12 +23,7 @@ if(($ligne = mysqli_fetch_array($results)) == true)
 		header("Content-Length:".filesize($track_path));
 		header("Content-Disposition: audio; filename=".$file_name);
 		readfile($track_path);
-		die();
 	}
-
-
-
-	printf("<script type=\"text/javascript\">%s</script>", $ligne['track_id']);
 }
 
 

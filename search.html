@@ -29,6 +29,7 @@
 
 	function playTrack(trackid) {
 		console.log(trackid);
+		alert("Playing track.. beep boop bleep bop");
 		$.ajax({
 			url : 'scripts/playmusic.php',
 			type : 'GET',
@@ -36,7 +37,10 @@
 			dataType : 'html',
 			success : function(res, statut)
 			{
-				console.log(res);
+				console.log("playing music");
+				var trackurl = URL.createObjectURL(res);
+				var playaudio = new Audio(trackurl);
+				playaudio.play();
 			}
 		});
 	}
