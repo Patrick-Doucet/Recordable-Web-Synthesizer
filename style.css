@@ -9,6 +9,7 @@
                                     supported by Chrome and Opera */
 }
 
+/*Remove possibility to scroll in x axis*/
 html, body{
      max-width:100%;
      max-height:100%;
@@ -23,6 +24,7 @@ html, body{
     height: 100%;
 }
 
+/*The following is for the button row: Play/record/save*/
 .recordPlayButtonContainer{
     margin-left: 25%;
     margin-right: 25%;
@@ -47,6 +49,17 @@ html, body{
     float:right;
 
 }
+
+/*Creating the div and positioning for all of the keys inside the piano component*/
+
+.PianoComponent{
+    margin-left: 25%;
+    margin-right: 25%;
+    display:inline-block;
+    border-style:double;
+    display: flex;
+}
+
 .whiteKey{
     position: relative;
     display:inline-block;
@@ -77,14 +90,28 @@ html, body{
     z-index: 2;
 }
 
-.PianoComponent{
-    margin-left: 25%;
-    margin-right: 25%;
-    display:inline-block;
-    border-style:double;
-    display: flex;
+.whiteKey span{
+    position: absolute;
+    bottom: 10%;
+    right: 40%;
 }
 
+.blackKey span{
+    color: white;
+    position: absolute;
+    bottom: 10%;
+    right: 40%;
+}
+
+.whiteKey:active{
+    background-color:blue;
+}
+
+.blackKey:active{
+    background-color:blue;
+}
+
+/*This is the row following the piano component: Volume, octaves*/
 .octaveButtons{
     display:flex;
     float:right;
@@ -105,19 +132,49 @@ html, body{
     margin-top:3%;
 }
 
-.whiteKey span{
-    position: absolute;
-    bottom: 10%;
-    right: 40%;
+/*user parameters and bottom how to text*/
+.user_parameters{
+    margin-top:0.5%;
+    margin-left: 25%;
+    margin-right:25%;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgb(233, 233, 233);
 }
 
-.blackKey span{
-    color: white;
-    position: absolute;
-    bottom: 10%;
-    right: 40%;
+#userParamText{
+    font: Arial;
+    margin-left: 25%;
 }
 
+#Information{
+    margin-top: 1%;
+}
+
+/*Css style for the search.html*/
+/*Search text box and buttons*/
+#SearchBy{
+    font-size: 1.5em;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+.SearchContainer{
+    text-align: center;
+}
+
+#searchinputs{
+
+    text-align: center;
+}
+
+#SearchButton{
+    margin-top: 0.2%;
+    width: 100%;
+    text-align: center;
+}
+
+/*Generated table styling*/
 .resultTable{
     margin: auto;
     margin-top: 1%;
@@ -142,13 +199,6 @@ html, body{
     background-color: #f2f2f2
 }
 
-.whiteKey:active{
-    background-color:blue;
-}
-
-.blackKey:active{
-    background-color:blue;
-}
 /*Navigation Menu Styling*/
 .topNavMenu {
     overflow: hidden;
@@ -180,25 +230,6 @@ html, body{
     display: none;
 }
 
-.user_parameters{
-    margin-top:0.5%;
-    margin-left: 25%;
-    margin-right:25%;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
-    background-color: rgb(233, 233, 233);
-}
-
-#userParamText{
-    font: Arial;
-    margin-left: 25%;
-}
-
-#Information{
-    margin-top: 1%;
-}
-
 /*Float text to left of navbar*/
 #fllbutton{
     font: Arial;
@@ -207,26 +238,6 @@ html, body{
 
 #fllbutton:hover{
     background-color: rgb(17, 17, 17);
-}
-
-#SearchBy{
-    font-size: 1.5em;
-    font-family: Georgia, Times, 'Times New Roman', serif;
-}
-
-.SearchContainer{
-    text-align: center;
-}
-
-#searchinputs{
-
-    text-align: center;
-}
-
-#SearchButton{
-    margin-top: 0.2%;
-    width: 100%;
-    text-align: center;
 }
 
 /*If the screen is less than 501px, hide all but the first link "play"*/
@@ -290,6 +301,7 @@ html, body{
     }
 }
 
+/*Remove "Rotate device" text when no longer needed*/
 @media screen and (orientation: landscape) and (min-width: 500px)
 {
     #Mobile{
@@ -297,6 +309,15 @@ html, body{
     }
 }
 
+/*Remove "Rotate device" text when no longer needed*/
+@media screen and (orientation: portrait) and (min-width: 500px)
+{
+    #Mobile{
+        display: none;
+    }
+}
+
+/*Remove unnecessary information when playing piano on landscape mode on mobile devices*/
 @media screen and (orientation: landscape) and (max-width: 1000px)
 {
 
@@ -331,8 +352,13 @@ html, body{
         margin-right: 0%;
     }
 
+    .volumeSlider{
+        margin-left:0%;
+    }
+
     .recordPlayButtonContainer{
         margin-top: 0%;
+        margin-right:0%
     }
 
     #recordButton{
@@ -349,4 +375,23 @@ html, body{
     #userParamText{
         display: none;
     }
+
+    /*For mobile screens of small landscape height. EX: IPhone 5, Galaxy S5*/
+    /*@media screen and (orientation: landscape) and (max-width: 400)
+    {
+        .PianoComponent{
+            width: 100%;
+            height: 100%;
+        }
+
+        .blackKey{
+            height: 150px;
+        }
+
+        .whiteKey{
+            height: 250px;
+        }
+    }*/
 }
+
+
