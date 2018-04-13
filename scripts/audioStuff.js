@@ -13,6 +13,7 @@ let currentlyRecording = false;
 let chunks = [];
 let mostRecentAudio = null;
 let mostRecentUrl = "";
+let blob = null;
 
 let keysPressed = [];
 
@@ -98,6 +99,8 @@ function setup(){
 
     // Functionnality for save button
     $("#playButton").on("mousedown touchstart", playMostRecent);
+	
+    $("#saveButton").on("mousedown touchstart", saveblob);
 
     // Deal with qwerty keyboard clicks
     $(document).keydown(userPressedAKey);
@@ -118,7 +121,7 @@ function record(e){
         currentlyRecording = false;
 
         // dump chunks data into blob
-        var blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+        blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
         
         var mostRecentUrl = URL.createObjectURL(blob);
         $("#mostRecentPlayback").attr("src", mostRecentUrl);
@@ -126,6 +129,17 @@ function record(e){
         mostRecentAudio = new Audio(mostRecentUrl);
 	    //mostRecentAudio.play();
     }
+};
+
+function saveblob() { //Illegal invocation error, maybe the data isn't being passed correctly.
+	var name = prompt("Enter a name for your masterpiece", "NoName");
+	var artist = prompt("Your name", "NoName");
+	$.ajax({
+		url : 'scripts/save.php',
+		type : 'POST',
+		data : { 'name': name, 'artist': artist, 'track': blob}
+	});
+	console.log("Done saving.");
 };
 
 function playMostRecent(){
