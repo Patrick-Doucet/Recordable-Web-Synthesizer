@@ -16,7 +16,7 @@ $track_path = "";
  */
 
 $requete = "INSERT INTO music (artist, name, date_created, track_id) VALUES ('$artist', '$name', '$track_path')";
-$results = mysqli_query($conn, $requete);
+mysqli_query($conn, $requete);
 
 
 

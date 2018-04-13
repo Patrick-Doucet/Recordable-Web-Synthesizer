@@ -35,6 +35,12 @@ html, body{
     float:right;
 }
 
+#saveButton{
+    height:40px;
+    width:40px;
+    float:right;
+}
+
 #recordButton{
     height:40px;
     width:40px;
