@@ -81,7 +81,7 @@ function setup(){
 
     $('div', $('.PianoComponent')).each(function () { // For each child div of the PianoComponent class
         // Deal with mouse clicks on the piano keys
-        $(this).on("mousedown touchstart", notePressed);
+        $(this).on("mousedown mouseenter touchstart", notePressed);
         $(this).on("mouseup mouseleave touchend", noteReleased);
 
         qwertyDivMap[$(this).attr('value')] = $(this).attr('id');
@@ -194,7 +194,7 @@ function notePressed(e){
             oscillatorList[tone] = playTone(freq);
             keysPressed[tone] = true;
         }
-    }else{
+    }else if(e.type != "mouseenter"){
         let dataset = e.target.dataset;
         var tone = e.target.attributes.value.value;
         if(tone < 12){
