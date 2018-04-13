@@ -15,9 +15,7 @@
         });
     </script>
 </head>
-<!--The piano component is not done, it is not responsive and is missing a lot of formatting stuff in general.
-     I believe it may be safe to start associating the js functions to the onclicks on the correct IDs of the keys
-     but these may change if the current design cannot be transferred to responsive design, I will however make sure the ids stay the same-->
+
 <body>
     <!--TopNavMenu-->
     <div class="topNavMenu" id="navMenu">
@@ -50,7 +48,7 @@
 
     <div id="Mobile"><h3><b>You are on mobile! Flip your devices to landscape view to play</b></h3></div>
 
-    <!--The Record button container, currently on its own-->
+    <!--The container for the play/save/record buttons-->
     <div class="row">
         <div class="col-sm-12"> 
             <div class="recordPlayButtonContainer">
@@ -61,7 +59,7 @@
         </div>
     </div>
 
-    <!--The Piano component container-->
+    <!--The Piano component container, contains all of the keys-->
     <div class="row">
         <div class="col-sm-12 mx-sm-2">
             <div class="PianoComponent">
@@ -86,7 +84,7 @@
         </div>
     </div>
 
-    <!--The octave button container-->
+    <!--The octave button and volume control container-->
     <div class="row">
         <div class="col-sm-12">
             <div class="volumeSlider">
@@ -100,7 +98,7 @@
         </div>
     </div>
 
-    <!--Matt's test buttons-->
+    <!--The sound button board to change the type of sound emitted from the piano component-->
     <div class="row">
         <div class="col-sm-12">
             <div id="userParamText"><h4><b>Customizing your sound</b></h4></div>
@@ -116,7 +114,7 @@
         </div>
     </div>
 
-    <!--How to text stuff //will be the last container on the site-->
+    <!--How to text stuff-->
     <div class="row">
         <div class="col-sm-12">
             <div id="Information">

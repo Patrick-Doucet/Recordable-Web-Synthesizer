@@ -83,8 +83,6 @@ html, body{
     border-width: 0.01em;
     background-color: black;
     color: black;
-    /*left: 75px;
-    top: 100px;*/
     width: 56px;
     height: 200px;
     z-index: 2;
@@ -318,6 +316,8 @@ html, body{
 }
 
 /*Remove unnecessary information when playing piano on landscape mode on mobile devices*/
+/*To make sure that for all devices, the piano stays at 100% width, 80% height and that the buttons stay at the correct locations*/
+/*without losing any information on the screen the vw and vh units were used instead of pixel and percentage*/
 @media screen and (orientation: landscape) and (max-width: 1000px)
 {
 
@@ -338,11 +338,21 @@ html, body{
     }
 
     .PianoComponent{
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 80vh;
         margin-left: 0%;
         margin-right: 0%;
         margin-bottom: 0%;
+    }
+
+    .blackKey{
+        width: 100vw;
+        height: 60vh;
+    }
+
+    .whiteKey{
+        width: 100vw;
+        height: 78.5vh;
     }
 
     .octaveButtons{
@@ -358,7 +368,8 @@ html, body{
 
     .recordPlayButtonContainer{
         margin-top: 0%;
-        margin-right:0%
+        margin-right:0%;
+        height: 10vh;
     }
 
     #recordButton{
@@ -366,6 +377,39 @@ html, body{
         margin-top: 0%;
         margin-left: 0%;
         margin-right: 0%;
+        height:10vh;
+    }
+
+    #saveButton{
+        height:10vh;
+    }
+
+    #playButton{
+        height:10vh;
+    }
+
+    .volumeSlider{
+        height:9.8vh;
+    }
+
+    #volumeText{
+        height:10vh;
+    }
+
+    .slider{
+        height:10vh;
+    }
+
+    .octaveButtons{
+        height:10vh;
+    }
+
+    #octaveDown{
+        height:10vh;
+    }
+
+    #octaveUp{
+        height:10vh;
     }
 
     .user_parameters{
@@ -375,23 +419,5 @@ html, body{
     #userParamText{
         display: none;
     }
-
-    /*For mobile screens of small landscape height. EX: IPhone 5, Galaxy S5*/
-    /*@media screen and (orientation: landscape) and (max-width: 400)
-    {
-        .PianoComponent{
-            width: 100%;
-            height: 100%;
-        }
-
-        .blackKey{
-            height: 150px;
-        }
-
-        .whiteKey{
-            height: 250px;
-        }
-    }*/
 }
-
 
