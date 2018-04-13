@@ -28,7 +28,13 @@
         }
 
 	function playTrack(trackid) {
-		console.log(trackid);	
+		console.log(trackid);
+		$.ajax({
+			url : 'scripts/playmusic.php',
+			type : 'GET',
+			data : { 'trackid': trackid },
+			dataType : 'html'
+		});
 	}
 
 	$(document).ready(function(){

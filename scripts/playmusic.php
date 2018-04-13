@@ -12,7 +12,7 @@ $results = mysqli_query($conn, $requete);
 
 if(($ligne = mysqli_fetch_array($results)) == true)
 {
-	printf("<script type=\"text/javascript\"></script>");
+	printf("<script type=\"text/javascript\">%s</script>", $ligne['track_id']);
 }
 
 
