@@ -14,12 +14,12 @@ $track_path = "";
 
 $filename = microtime();
 $filename = strtr($filename, array('.' => '', ' ' => ''));
-$filename = getcwd() . "/tracks/" . $filename;
-file_put_contents($filename, $track);
-$track_path = $filename;
+$filepath = getcwd() . "/tracks/" . $filename;
+file_put_contents($filepath, $track);
+$track_path = $filepath;
  
 
-$requete = "INSERT INTO music (artist, name, date_created, track_id) VALUES ('$artist', '$name', NOW(), '$track_path')";
+$requete = "INSERT INTO music (artist, name, date_created, track_id, track) VALUES ('$artist', '$name', NOW(), '$track_path', '$filename')";
 mysqli_query($conn, $requete);
 
 

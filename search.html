@@ -33,7 +33,11 @@
 			url : 'scripts/playmusic.php',
 			type : 'GET',
 			data : { 'trackid': trackid },
-			dataType : 'html'
+			dataType : 'html',
+			success : function(res, statut)
+			{
+				console.log(res);
+			}
 		});
 	}
 
@@ -88,8 +92,8 @@
 				</select><br>
 
 			<div class="SearchInputs" id="searchinputs">
-				<input type="text" pattern="[a-zA-Z0-9]+" name="artist" id="artist"></input><br>
-				<input type="text" pattern="[a-zA-Z0-9]+" name="name" id="name"></input><br>
+				<input type="text" pattern="[a-zA-Z0-9 ]+" name="artist" id="artist"></input><br>
+				<input type="text" pattern="[a-zA-Z0-9 ]+" name="name" id="name"></input><br>
 			</div>	
 			</div>
 			<div id ="SearchButton">
