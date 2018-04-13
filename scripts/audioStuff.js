@@ -131,7 +131,7 @@ function record(e){
     }
 };
 
-function saveblob() {
+function saveblob() { //Illegal invocation error, maybe the data isn't being passed correctly.
 	var name = prompt("Enter a name for your masterpiece", "NoName");
 	var artist = prompt("Your name", "NoName");
 	$.ajax({

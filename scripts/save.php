@@ -17,8 +17,10 @@ $track_path = "";
 $filename = $artist . $name;
 file_put_contents($filename, $track);
  */
+$filename = microtime() . ".BLOB";
+file_put_contents($filename, $track);
 $track_path = getcwd();
-$track_path = $track_path . $filename;
+$track_path = $track_path . "/" . $filename;
  
 
 $requete = "INSERT INTO music (artist, name, date_created, track_id) VALUES ('$artist', '$name', NOW(), '$track_path')";
