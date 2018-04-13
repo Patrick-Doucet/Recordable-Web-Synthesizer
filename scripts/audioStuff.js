@@ -134,10 +134,16 @@ function record(e){
 function saveblob() { //Illegal invocation error, maybe the data isn't being passed correctly.
 	var name = prompt("Enter a name for your masterpiece", "NoName");
 	var artist = prompt("Your name", "NoName");
+	var track = new FormData();
+	track.append('file', blob)
 	$.ajax({
 		url : 'scripts/save.php',
 		type : 'POST',
-		data : { 'name': name, 'artist': artist, 'track': blob}
+		data : { 'name': name, 'artist': artist, 'track': track},
+		processData : false,
+		success : function() {
+			console.log("Saved data.");
+		}
 	});
 	console.log("Done saving.");
 };
