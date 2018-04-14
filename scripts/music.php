@@ -5,9 +5,9 @@ mysqli_select_db($conn, $db) or die("Unable to select db $db");
 
 $col = mysqli_real_escape_string($conn, $_GET['type']);
 $val = mysqli_real_escape_string($conn, $_GET['val']);
+$val = strtoupper($val);
 
-
-$requete = "SELECT * FROM music WHERE UPPER($col) = UPPER('$val')";
+$requete = "SELECT * FROM music WHERE UPPER($col) LIKE '$val%'";
 $results = mysqli_query($conn, $requete);
 
 echo '<table class="resultTable">';
