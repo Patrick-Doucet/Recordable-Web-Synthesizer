@@ -29,7 +29,7 @@
 
 	function playTrack(trackid) {
 		console.log(trackid);
-		alert("Playing track.. beep boop bleep bop");
+		//alert("Playing track.. beep boop bleep bop");
 		$.ajax({
 			url : 'scripts/playmusic.php',
 			type : 'GET',
@@ -38,8 +38,9 @@
 			success : function(res, statut)
 			{
 				console.log("playing music");
-				var trackurl = URL.createObjectURL(res);
-				var playaudio = new Audio(trackurl);
+				//var trackurl = URL.createObjectURL(res);
+				//var playaudio = new Audio(trackurl);
+				var playaudio = new Audio('scripts/tracks/' + res);
 				playaudio.play();
 			}
 		});

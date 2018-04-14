@@ -15,7 +15,7 @@ if(($ligne = mysqli_fetch_array($results)) == true)
 {
 	$file_name = $ligne['track'];
 	$track_path = $ligne['track_id'];
-	if(file_exists($track_path)){
+/*	if(file_exists($track_path)){
 		header($_SERVER["SERVER_PROTOCOL"] . "200 OK");
 		header("Cache-Control: public");
 		header("Content-Type: audio/ogg");
@@ -23,7 +23,8 @@ if(($ligne = mysqli_fetch_array($results)) == true)
 		header("Content-Length:".filesize($track_path));
 		header("Content-Disposition: audio; filename=".$file_name);
 		readfile($track_path);
-	}
+	}*/
+	echo $file_name;
 }
 
 
