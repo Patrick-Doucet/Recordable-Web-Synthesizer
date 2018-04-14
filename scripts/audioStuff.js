@@ -132,8 +132,6 @@ function record(e){
 };
 
 function saveblob() {
-	//var name = prompt("Enter a name for your masterpiece", "NoName");
-	//var artist = prompt("Your name", "NoName");
 	var track = new FormData();
 	track.append('file', blob)
 	$.ajax({
@@ -141,7 +139,17 @@ function saveblob() {
 		type : 'POST',
 		data : track,
 		processData : false,
-		success : function() {
+		success : function(res, statu) {
+			var name = prompt("Enter a name for your masterpiece", "Wicked Sound");
+			var artist = prompt("Your name", "Anonymous");
+			$.ajax({
+				url : 'scripts/details.php',
+				type : 'POST',
+				data : { 'name': name, 'artist': artist, 'filename': res},
+				success : function() {
+					console.log("saved details.");
+				}
+			});
 			console.log("Saved data.");
 		}
 	});
